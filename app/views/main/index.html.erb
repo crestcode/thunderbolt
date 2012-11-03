@@ -1,0 +1,15 @@
+<h2>Listing Posts</h2>
+
+<table>
+	<tr>
+		<th>Posts</th>
+		<th>Comments</th>
+	<tr>
+
+	<% @posts.each do |post| %>
+	<tr>
+		<td><%= link_to(post.title, post.url) %></td>
+		<td><%= post.comments.count %></td>
+	</tr>
+	<% end %>
+</table>
