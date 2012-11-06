@@ -1,0 +1,7 @@
+<h2>New post</h2>
+
+<%= form_for(@posts) do |f| %>
+	<%= f.text_field :url, :placeholder => "URL"%>
+	<%= f.text_field :title, :placeholder => "Title" %>
+	<%= f.submit "Save post!" %>
+<% end %>
