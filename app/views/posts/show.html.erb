@@ -11,8 +11,8 @@
 	</table>
 <% else %>
 	<h4>No comments yet</h4>
+	<hr>
 <% end %>
-
 <h4>Add a comment:</h4>
 <%= form_for([@post, @post.comments.build]) do |f| %>
 	<%= f.text_area :content, :rows => 4, :placeholder => "Comments" %>
@@ -20,4 +20,4 @@
 	<%= f.submit %>
 <% end %>
 
-<p><%= link_to 'Back to Post Index', posts_path %></p>
+<p><%= link_to 'Back to Posts', posts_path %></p>

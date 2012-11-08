@@ -1,7 +1,20 @@
 <h2>New post</h2>
 
 <%= form_for(@posts) do |f| %>
+	<%= f.label :url, "URL:" %>
 	<%= f.text_field :url, :placeholder => "URL"%>
+	<%= f.label :title, "Title:" %>
 	<%= f.text_field :title, :placeholder => "Title" %>
 	<%= f.submit "Save post!" %>
 <% end %>
+
+<!--
+<h2>Tag Helpers Post</h2>
+
+<%= form_tag('/posts') do %>
+	<%= text_field_tag('post[url]') %>
+	<%= text_field_tag('post[title]') %>
+	<%= submit_tag("Save post!") %>
+<% end %>
+
+-->
