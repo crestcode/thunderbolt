@@ -3,7 +3,7 @@
 <table class="table table-hover">
 <% @posts.each do |post| %>
 <tr>
-	<td><%= link_to(post.title, post.url) %> (<%= link_to "#{pluralize post.comments.count, 'comment'}", post_path(post) %>)</td>
+	<td>Votes: <%= post.upvotes-post.downvotes %> <%= link_to(raw("<i class=\"icon-chevron-up\"></i>"), upvote_post_path(post)) %><%= link_to(raw("<i class=\"icon-chevron-down\"></i>"), downvote_post_path(post)) %> <%= link_to(post.title, post.url) %> (<%= link_to "#{pluralize post.comments.count, 'comment'}", post_path(post) %>)</td>
 </tr>
 <% end %>
 </table>
