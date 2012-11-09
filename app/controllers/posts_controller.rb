@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    @posts = Post.new
+    @post = Post.new
   end
 
   def create
@@ -18,6 +18,7 @@ class PostsController < ApplicationController
 
   def show
   	@post = Post.find(params[:id])
+    @comment = @post.comments.build
   end
 
   def upvote
@@ -26,11 +27,9 @@ class PostsController < ApplicationController
     redirect_to(posts_path)
   end
 
-    def downvote
+  def downvote
     @post = Post.find(params[:id])
     @post.update_attribute(:downvotes, @post.downvotes + 1)
     redirect_to(posts_path)
   end
-
-
 end
