@@ -9,13 +9,14 @@
 	<%= f.submit "Save post!" %>
 <% end %>
 
-<!--
-<h2>Tag Helpers Post</h2>
 
-<%= form_tag('/posts') do %>
-	<%= text_field_tag('post[url]') %>
-	<%= text_field_tag('post[title]') %>
-	<%= submit_tag("Save post!") %>
+<h2>Submit a new link (with tag helpers)</h2>
+
+<%= form_tag '/posts' do %>
+	<%= label_tag 'post[url]', "URL:" %>
+	<%= text_field_tag 'post[url]', nil, :placeholder => "URL" %>
+	<%= label_tag 'post[title]', "Title:" %>
+	<%= text_field_tag 'post[title]', nil, :placeholder => "Title" %>
+	<br>
+	<%= submit_tag "Save post!" %>
 <% end %>
-
--->
