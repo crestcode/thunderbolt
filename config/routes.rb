@@ -4,10 +4,7 @@ CourseProject::Application.routes.draw do
   resources :posts, :only => [:index, :new, :create, :show] do
   
   	resources :comments, :only => [:create]
- 
-  	member do
-  		get 'upvote', 'downvote'
-  	end
+  	resources :votes, :only => [:create]
 
   end
 end

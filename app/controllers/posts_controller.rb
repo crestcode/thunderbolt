@@ -1,8 +1,7 @@
 class PostsController < ApplicationController
 
   def index
-  	@posts = Post.order('upvotes-downvotes DESC')
-  	
+  	@posts = Post.all.sort_by(&:vote_number).reverse
   end
 
   def new
@@ -21,15 +20,4 @@ class PostsController < ApplicationController
     @comment = @post.comments.build
   end
 
-  def upvote
-    @post = Post.find(params[:id])
-    @post.update_attribute(:upvotes, @post.upvotes + 1)
-    redirect_to(posts_path)
-  end
-
-  def downvote
-    @post = Post.find(params[:id])
-    @post.update_attribute(:downvotes, @post.downvotes + 1)
-    redirect_to(posts_path)
-  end
 end
