@@ -17,6 +17,13 @@ body { padding-top: 60px; }
 form { display: inline; }
 @import "bootstrap-responsive";
 
-input .field_with_errors {
-	border: 2px solid red;
+.navbar .brand {
+    margin-left: 0px;
+}
+
+.custom li a:hover {
+    color: rgb(85, 85, 85);
+    text-decoration: none;
+    background-color: rgb(230, 230, 230);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.125) inset;
 }
