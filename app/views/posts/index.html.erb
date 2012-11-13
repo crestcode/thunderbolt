@@ -14,7 +14,7 @@
 				<%= link_to raw('<i class="icon-chevron-down"></i>'), nil, :onclick => "$(this).closest('form').submit()" %>
 			<% end %>
 
-			<%= link_to(post.title, post.url) %> (<%= link_to "#{pluralize post.comments.count, 'comment'}", post_path(post) %>)
+			<%= link_to(post.title, display_url_link(post)) %> (<%= link_to "#{pluralize post.comments.count, 'comment'}", post_path(post) %>)
 		</td>
 	</tr>
 <% end %>

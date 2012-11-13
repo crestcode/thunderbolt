@@ -1,22 +1,21 @@
 <h2>Submit a new link</h2>
 
 <%= form_for(@post) do |f| %>
-	<%= f.label :url, "URL:" %>
-	<%= f.text_field :url, :placeholder => "URL"%>
+	<% if @post.errors.any? %>
+		<div class='alert alert-error'>
+			<%= @post.errors.full_messages.join("<br>").html_safe %>		
+		</div>
+	<% end %>
+	<div class="field">
+		<%= f.label :url, "URL:" %>
+		<%= f.text_field :url, :placeholder => "URL" %>
+	</div>
 	<%= f.label :title, "Title:" %>
 	<%= f.text_field :title, :placeholder => "Title" %>
 	<br>
-	<%= f.submit "Save post!" %>
+	<div class="actions">
+		<%= f.submit "Save post!" %>
+	</div>
 <% end %>
 
 
-<h2>Submit a new link (with tag helpers)</h2>
-
-<%= form_tag '/posts' do %>
-	<%= label_tag 'post[url]', "URL:" %>
-	<%= text_field_tag 'post[url]', nil, :placeholder => "URL" %>
-	<%= label_tag 'post[title]', "Title:" %>
-	<%= text_field_tag 'post[title]', nil, :placeholder => "Title" %>
-	<br>
-	<%= submit_tag "Save post!" %>
-<% end %>

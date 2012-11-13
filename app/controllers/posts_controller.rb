@@ -9,15 +9,20 @@ class PostsController < ApplicationController
   end
 
   def create
-    @posts = Post.create(params[:post])
+    @post = Post.create(params[:post])
 #    @posts = Post.new(params[:post])
 #    @posts.save
-    redirect_to(posts_path, :notice => 'Post was successfully created.')
+    if @post.valid?
+      redirect_to(posts_path, :notice => 'Post was successfully created.')
+    else
+      render 'new'
+    end
   end
 
   def show
   	@post = Post.find(params[:id])
     @comment = @post.comments.build
+
   end
 
 end

@@ -15,6 +15,11 @@
 
 <h4>Add a comment:</h4>
 <%= form_for([@post, @comment]) do |f| %>
+	<% if @comment.errors.any? %>
+		<div class='alert alert-error'>
+			<%= @comment.errors.full_messages.join("<br>").html_safe %>		
+		</div>
+	<% end %>
 	<%= f.text_area :content, :rows => 4, :placeholder => "Comments" %>
 	<br>
 	<%= f.submit %>

@@ -16,3 +16,7 @@
 body { padding-top: 60px; }
 form { display: inline; }
 @import "bootstrap-responsive";
+
+input .field_with_errors {
+	border: 2px solid red;
+}
