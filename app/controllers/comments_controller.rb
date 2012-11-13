@@ -7,7 +7,8 @@ class CommentsController < ApplicationController
 			redirect_to post_path(post)
 		else
 			@post = Post.find(params[:post_id])
-			@comment = @post.comments.create
+			@comment = @post.comments.create(params[:comment])
+			@comment.content = nil
       render 'posts/show'
     end
 	end
