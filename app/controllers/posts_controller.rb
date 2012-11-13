@@ -22,7 +22,22 @@ class PostsController < ApplicationController
   def show
   	@post = Post.find(params[:id])
     @comment = @post.comments.build
-
   end
+
+  def upvote
+    post = Post.find(params[:id])
+    vote = post.votes.build
+    vote.direction = "up"
+    vote.save
+    redirect_to posts_path
+  end
+
+  def downvote
+    post = Post.find(params[:id])
+    vote = post.votes.build
+    vote.direction = "down"
+    vote.save
+    redirect_to posts_path
+  end    
 
 end
