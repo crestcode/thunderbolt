@@ -10,7 +10,7 @@
 
 			<%= link_to(post.title, display_url_link(post)) %> (<%= link_to "#{pluralize post.comments.count, 'comment'}", post_path(post) %>)
 			<% if post.user %>
-				Posted By: <%= User.find_by_id(post.user_id).username %> 
+				Posted By: <%= post.user.username %> 
 			<% end %>
 		</td>
 	</tr>

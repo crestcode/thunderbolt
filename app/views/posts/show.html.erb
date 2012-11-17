@@ -3,9 +3,15 @@
 	<h4><%= pluralize(@post.comments.count, "Comment") %>:</h4>
 	<table class="table table-hover">
 		<% @post.comments.each do |comment| %>
-			<tr>
-				<td><%= comment.content %></td>
-			</tr>
+			<% if comment.content != nil %>
+				<tr>
+					<td><%= comment.content %>
+						<% if comment.user %>
+							| Posted By: <%= comment.user.username %> 
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
 		<% end %>
 	</table>
 <% else %>
@@ -13,16 +19,18 @@
 	<hr>
 <% end %>
 
-<h4>Add a comment:</h4>
-<%= form_for([@post, @comment]) do |f| %>
-	<% if @comment.errors.any? %>
-		<div class='alert alert-error'>
-			<%= @comment.errors.full_messages.join("<br>").html_safe %>		
-		</div>
+<% if logged_in? %>
+	<h4>Add a comment:</h4>
+	<%= form_for([@post, @comment]) do |f| %>
+		<% if @comment.errors.any? %>
+			<div class='alert alert-error'>
+				<%= @comment.errors.full_messages.join("<br>").html_safe %>		
+			</div>
+		<% end %>
+		<%= f.text_area :content, :rows => 4, :placeholder => "Comments" %>
+		<br>
+		<%= f.submit %>
 	<% end %>
-	<%= f.text_area :content, :rows => 4, :placeholder => "Comments" %>
-	<br>
-	<%= f.submit %>
+	<br><br>
 <% end %>
-<br><br>
 <p><%= link_to 'Back to Posts', posts_path %></p>
