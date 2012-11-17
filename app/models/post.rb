@@ -7,6 +7,8 @@ class Post < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :votes
 
+  belongs_to :user
+
   def vote_number
   	votes.where(direction: "up").count - votes.where(direction: "down").count
   end

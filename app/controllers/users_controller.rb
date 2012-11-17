@@ -7,7 +7,8 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(params[:user])
 		if @user.save
-			redirect_to root_path, notice: "Welcome, <%= current_user.username %>"
+			session[:user] = @user
+			redirect_to root_path, notice: "Welcome, #{@user.username}"
 		else
 			render 'new'
 		end

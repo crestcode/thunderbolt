@@ -9,6 +9,9 @@
 				<%= link_to raw('<i class="icon-chevron-down"></i>'), downvote_post_path(post) %>
 
 			<%= link_to(post.title, display_url_link(post)) %> (<%= link_to "#{pluralize post.comments.count, 'comment'}", post_path(post) %>)
+			<% if post.user %>
+				Posted By: <%= User.find_by_id(post.user_id).username %> 
+			<% end %>
 		</td>
 	</tr>
 <% end %>
