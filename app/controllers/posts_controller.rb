@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-
+  before_filter :require_user, only: [:new, :create, :upvote, :downvote]
+  
   def index
   	@posts = Post.all.sort_by(&:vote_number).reverse
   end

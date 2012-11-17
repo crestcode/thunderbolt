@@ -1,0 +1,19 @@
+<h2>Register a new user</h2>
+
+<%= form_for @user do |f| %>
+	<% if @user.errors.any? %>
+		<div class='alert alert-error'>
+			<%= @user.errors.full_messages.join("<br>").html_safe %>		
+		</div>
+	<% end %>
+	<div class="field">
+		<%= f.label :username, "Username:" %>
+		<%= f.text_field :username, :placeholder => "Username" %>
+	</div>
+	<%= f.label :password, "Password:" %>
+	<%= f.password_field :password, :placeholder => "Password" %>
+	<br>
+	<div class="actions">	
+		<%= f.submit "Let's go!" %>
+	</div>
+<% end %>

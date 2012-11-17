@@ -5,5 +5,16 @@
 			<li><%= link_to 'All Posts', posts_path %></li>
 			<li><%= link_to 'Create new post', new_post_path %></li>
 		</ul>
+		<ul class="nav pull-right">
+				<% if logged_in? %>
+					<li><a>Welcome <%= current_user.username %>!</a></li>
+					<li><%= link_to "Logout", logout_path %></li>
+				<% else %>
+					<li><%= link_to 'Register', register_path %></li>
+					<li><%= link_to 'Login', login_path %></li>
+				<% end %>	
+			</ul>
+		</ul>
 	</div>
 </div>
+
