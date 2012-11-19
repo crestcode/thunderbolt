@@ -1,0 +1,45 @@
+<h2>User Profile</h2>
+
+<table>
+	<tr>
+		<td>Username: </td><td><%= @user.username %></td>
+	</tr>
+	<tr>
+		<td>Joined: </td> <td><%= time_ago_in_words(@user.created_at) %> ago</td>
+	</tr>
+</table>
+<br>
+<strong>Last ten posts: </strong>
+	<br>
+	<% if @last_ten_posts.count > 0 %>
+		<% @last_ten_posts.each do |post| %>
+			<%= link_to(post.title, post_path(post)) %>
+			<br>
+		<% end %>
+	<% else %>
+		<p>No posts yet.</p>
+	<% end %>
+<br>
+<strong>Last ten comments: </strong>
+	<br>
+	<% if @last_ten_comments.count > 0 %>
+		<% @last_ten_comments.each do |comment| %>				
+			<%= link_to(comment.content, post_path(comment.post_id)) %>
+			<br>
+		<% end %>
+	<% else %>
+		<p>No comments yet.</p>
+	<% end %>
+<br>
+<strong>Last ten votes: </strong>
+	<br>
+	<% if @last_ten_votes.count > 0 %>
+		<% @last_ten_votes.each do |vote| %>
+			<%= raw('<i class="icon-chevron-up"></i>') if vote.direction == "up" %> 
+			<%= raw('<i class="icon-chevron-down"></i>') if vote.direction == "down" %> 
+			<%= link_to(vote.post.title, post_path(vote.post_id)) %></td>
+		<br>
+		<% end %>
+	<% else %>
+		<p>No votes yet.</p>
+	<% end %>
