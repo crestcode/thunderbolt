@@ -7,7 +7,7 @@
 				<tr>
 					<td><%= comment.content %>
 						<% if comment.user %>
-							| Posted By: <%= comment.user.username %> 
+							| Posted By: <%= link_to comment.user.username, user_path(comment.user) %> 
 						<% end %>
 					</td>
 				</tr>

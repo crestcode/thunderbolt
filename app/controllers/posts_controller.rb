@@ -28,6 +28,7 @@ class PostsController < ApplicationController
     post = Post.find(params[:id])
     vote = post.votes.build
     vote.direction = "up"
+    vote.user_id = current_user.id
     vote.save
     redirect_to posts_path
   end
@@ -36,6 +37,7 @@ class PostsController < ApplicationController
     post = Post.find(params[:id])
     vote = post.votes.build
     vote.direction = "down"
+    vote.user_id = current_user.id
     vote.save
     redirect_to posts_path
   end    
