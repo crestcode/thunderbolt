@@ -7,12 +7,25 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @category = Category.new
   end
 
   def create
-    @post = Post.new(params[:post])
-    @post.user_id = current_user.id
-    if @post.save
+    post = Post.new(params[:post])
+    category = Category.new(params[:category])
+    post.user_id = current_user.id
+    if category.name != nil 
+      find_category = Category.find_by_name(category.name)
+      if find_category != nil
+        post.category_id = find_category.id
+        find_category.increment!(:popularity)
+      else
+        category.save
+        category.increment!(:popularity)
+        post.category_id = category.id
+      end
+    end
+    if post.save
       redirect_to(posts_path, :notice => 'Post was successfully created.')
     else
       render 'new'

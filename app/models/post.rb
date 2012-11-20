@@ -8,6 +8,7 @@ class Post < ActiveRecord::Base
   has_many :votes
 
   belongs_to :user
+  belongs_to :category
 
   def vote_number
   	votes.where(direction: "up").count - votes.where(direction: "down").count

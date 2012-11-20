@@ -12,6 +12,10 @@
 	</div>
 	<%= f.label :title, "Title:" %>
 	<%= f.text_field :title, :placeholder => "Title" %>
+	<%= fields_for @category do |c| %>
+		<%= c.label :name, "Category (optional):" %>
+		<%= c.text_field :name, :placeholder => "Category" %>
+	<% end %>
 	<br>
 	<div class="actions">
 		<%= f.submit "Save post!" %>
