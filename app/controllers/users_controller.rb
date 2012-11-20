@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+		@twitter = @@twitter_client
 		@last_ten_posts = Post.order('created_at DESC').where(:user_id => params[:id]).limit(10)
 		@last_ten_comments = Comment.order('created_at DESC').where(:user_id => params[:id]).limit(10)
 		@last_ten_votes = Vote.order('created_at DESC').where(:user_id => params[:id]).limit(10)

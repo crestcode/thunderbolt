@@ -12,34 +12,46 @@
 <strong>Last ten posts: </strong>
 	<br>
 	<% if @last_ten_posts.count > 0 %>
-		<% @last_ten_posts.each do |post| %>
-			<%= link_to(post.title, post_path(post)) %>
-			<br>
-		<% end %>
+		<ul>
+			<% @last_ten_posts.each do |post| %>
+				<li><%= link_to(post.title, post_path(post)) %></li>
+			<% end %>
+		</ul>
 	<% else %>
 		<p>No posts yet.</p>
 	<% end %>
-<br>
 <strong>Last ten comments: </strong>
 	<br>
 	<% if @last_ten_comments.count > 0 %>
-		<% @last_ten_comments.each do |comment| %>				
-			<%= link_to(comment.content, post_path(comment.post_id)) %>
-			<br>
-		<% end %>
+		<ul>
+			<% @last_ten_comments.each do |comment| %>				
+				<li>"<%= link_to(comment.content, post_path(comment.post_id)) %>"</li>
+			<% end %>
+		</ul>
 	<% else %>
 		<p>No comments yet.</p>
 	<% end %>
-<br>
 <strong>Last ten votes: </strong>
 	<br>
 	<% if @last_ten_votes.count > 0 %>
 		<% @last_ten_votes.each do |vote| %>
 			<%= raw('<i class="icon-chevron-up"></i>') if vote.direction == "up" %> 
 			<%= raw('<i class="icon-chevron-down"></i>') if vote.direction == "down" %> 
-			<%= link_to(vote.post.title, post_path(vote.post_id)) %></td>
+			<%= link_to(vote.post.title, post_path(vote.post_id)) %>
 		<br>
 		<% end %>
 	<% else %>
 		<p>No votes yet.</p>
 	<% end %>
+<br>
+<% if @user.twitter != nil %>
+	<strong>Last ten tweets (<%= link_to(@user.twitter, "http://twitter.com/#{@user.twitter}") %>): </strong>
+	<br>
+		<ul>
+			<% @twitter.user_timeline(@user.twitter.to_s, :count => 10).each do |status| %>
+				<li><%= status.text %></li>
+			<% end %>	
+	</ul>
+<% else %>
+	<strong>Twitter feed disabled.</strong>
+<% end %>

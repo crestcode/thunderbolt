@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :password_digest, :username, :password
+  attr_accessible :password_digest, :username, :password, :twitter
   has_secure_password
 
   validates :username, 	:presence => true
