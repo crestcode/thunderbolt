@@ -44,7 +44,7 @@
 		<p>No votes yet.</p>
 	<% end %>
 <br>
-<% if @user.twitter != nil %>
+<% if @user.twitter != "" %>
 	<strong>Last ten tweets (<%= link_to(@user.twitter, "http://twitter.com/#{@user.twitter}") %>): </strong>
 	<br>
 		<ul>
