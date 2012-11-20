@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     post = Post.new(params[:post])
     category = Category.new(params[:category])
     post.user_id = current_user.id
-    if category.name != nil 
+    if category.name != ""
       find_category = Category.find_by_name(category.name)
       if find_category != nil
         post.category_id = find_category.id
