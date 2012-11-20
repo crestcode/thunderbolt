@@ -1,12 +1,12 @@
-<h2>Posts</h2>
+<h2><%= @category.name %> Posts</h2>
 
 <table class="table table-hover">
 	<% @posts.each do |post| %>
 	<tr>
 		<td>
 			Votes: <%= post.vote_number %>
-				<%= link_to raw('<i class="icon-chevron-up"></i>'), upvote_post_path(post) %>
-				<%= link_to raw('<i class="icon-chevron-down"></i>'), downvote_post_path(post) %>
+				<%= link_to raw('<i class="icon-chevron-up"></i>'), upvote_category_path(post) %>
+				<%= link_to raw('<i class="icon-chevron-down"></i>'), downvote_category_path(post) %>
 
 			<%= link_to(post.title, display_url_link(post)) %> (<%= link_to "#{pluralize post.comments.count, 'comment'}", post_path(post) %>)
 			submitted <%= time_ago_in_words(post.created_at) %> ago
@@ -14,7 +14,7 @@
 				by <%= link_to post.user.username, user_path(post.user) %> 
 			<% end %>
 			<% if post.category %>
-				to <%= link_to post.category.name, category_path(post.category) %>
+				to <%= post.category.name %>
 			<% end %>
 		</td>
 	</tr>
